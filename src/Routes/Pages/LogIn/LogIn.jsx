@@ -1,4 +1,6 @@
 import { Link } from "react-router-dom";
+import { FcGoogle } from 'react-icons/fc';
+
 
 
 const LogIn = () => {
@@ -26,12 +28,18 @@ const LogIn = () => {
                             </div>
                             <div className="form-control mt-6">
                                 <button className="btn btn-primary">Login</button>
+                                <h1 className="text-right py-2">New here? please <Link to='/register'><button className="btn-link">register</button></Link></h1>
+
                             </div>
                         </form>
-                        <hr className=" py-3"></hr>
-                        <div>
-                            <h1>New here please <Link to='/register'><button className="btn-link">register</button></Link></h1>
-                            <p>Use google to continue</p>
+                        <hr className=" pt-2"></hr>
+                        <div className="flex justify-center py-5">
+                            <div className="flex items-center border-2 px-2 py-1 rounded-full">
+                                <p>
+                                   <FcGoogle></FcGoogle>
+                                </p>
+                                <p>continue with Google</p>
+                            </div>
                         </div>
                     </div>
                 </div>
