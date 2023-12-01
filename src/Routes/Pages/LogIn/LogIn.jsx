@@ -12,6 +12,7 @@ const LogIn = () => {
         const password = form.password.value;
         console.log(email,password);
     }
+    
     return (
         <div>
             <div className="hero py-10 bg-base-200">

@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {},
+    fontFamily:{
+      // 'bitter':['Bitter'],
+    },
   },
   plugins: [require("daisyui")],
 }
