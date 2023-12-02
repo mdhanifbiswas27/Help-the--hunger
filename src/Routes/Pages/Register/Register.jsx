@@ -1,8 +1,13 @@
+import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import  { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const Register = () => {
+    const {createUser,loginUserWithGoogle} = useContext(AuthContext);
+    const navigate = useNavigate();
 
     const handleRegister = event => {
         event.preventDefault();
@@ -12,6 +17,46 @@ const Register = () => {
         const Photo = form.Photo.value;
         const password = form.password.value;
         console.log(name,email,Photo, password);
+
+        // create user
+        createUser(email,password)
+        .then(()=>{
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/');
+        })
+        .catch(()=>{
+            navigate('/');
+        })
+    };
+
+    const handleLoginWithGoogle = ()=>{
+        loginUserWithGoogle()
+        .then(()=>{
+                Swal.fire({
+                    position: "middle",
+                    icon: "success",
+                    title: "User Login successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/');
+        })
+        .catch(()=>{
+            Swal.fire({
+                position: "middle",
+                icon: "error",
+                title: "Something wrong try again",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/');
+        })
     }
 
     return (
@@ -58,7 +103,7 @@ const Register = () => {
                         </form>
                         <hr className=" pt-2"></hr>
                         <div className="flex justify-center py-5">
-                            <div className="flex items-center border-2 px-2 py-1 rounded-full">
+                            <div onClick={handleLoginWithGoogle} className="flex items-center border-2 px-2 py-1 rounded-full">
                                 <p>
                                     <FcGoogle></FcGoogle>
                                 </p>
