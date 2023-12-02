@@ -51,6 +51,7 @@ const Navbar = () => {
                     {
                         user?<><Link to='/'><li onClick={handleLogOut} className='bg-[#BB272E] text-white py-2 px-4  rounded-full'>LogOut</li></Link></>:<><Link to='/Login'><li className='bg-[#BB272E] text-white py-2 px-4  rounded-full'>Login</li></Link></>
                     }
+                    <li><img className='rounded-full h-[45px] w-[45px]' src={user?.photoURL} alt="" /></li>
                 </ul>
             </div>
         </div>

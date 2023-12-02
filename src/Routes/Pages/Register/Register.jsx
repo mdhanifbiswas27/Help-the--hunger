@@ -3,10 +3,11 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import  { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 const Register = () => {
-    const {createUser,loginUserWithGoogle} = useContext(AuthContext);
+    const {createUser,loginUserWithGoogle,UpdateProfile} = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleRegister = event => {
@@ -21,17 +22,28 @@ const Register = () => {
         // create user
         createUser(email,password)
         .then(()=>{
+            UpdateProfile(name,Photo)
+            .then(()=>{
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User created successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+                  navigate('/');
+            });
+            
+            
+        })
+        .catch(()=>{
             Swal.fire({
                 position: "top-end",
                 icon: "success",
-                title: "User created successfully",
+                title: "something wrong try again",
                 showConfirmButton: false,
                 timer: 1500
               });
-              navigate('/');
-        })
-        .catch(()=>{
-            navigate('/');
         })
     };
 
@@ -61,6 +73,9 @@ const Register = () => {
 
     return (
         <div>
+            <Helmet>
+                <title>Help The Hunger/Register</title>
+            </Helmet>
             <div className="hero py-10 bg-base-200">
                 <div className="hero-content ">
 
@@ -71,13 +86,13 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Name</span>
                                     </label>
-                                    <input type="text" name="name" placeholder="Name" className="input input-bordered w-[300px]" required />
+                                    <input type="text" name="name" placeholder="Name" className="input input-bordered w-[300px] border-[#BB272E]" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Email</span>
                                     </label>
-                                    <input type="email" name="email" placeholder="email" className="input input-bordered w-[300px]" required />
+                                    <input type="email" name="email" placeholder="email" className="input input-bordered w-[300px] border-[#BB272E]" required />
                                 </div>
                             </div>
                             <div className="flex justify-between mb-5">
@@ -85,18 +100,18 @@ const Register = () => {
                                     <label className="label">
                                         <span className="label-text">Photo URL</span>
                                     </label>
-                                    <input type="text" name="Photo" placeholder="Photo URL" className="input input-bordered w-[300px]" required />
+                                    <input type="text" name="Photo" placeholder="Photo URL" className="input input-bordered w-[300px] border-[#BB272E]" required />
                                 </div>
                                 <div className="form-control">
                                     <label className="label">
                                         <span className="label-text">Password</span>
                                     </label>
-                                    <input type="password" name="password" placeholder="password" className="input input-bordered w-[300px]" required />
+                                    <input type="password" name="password" placeholder="password" className="input input-bordered w-[300px] border-[#BB272E]" required />
                                     
                                 </div>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Register</button>
+                                <button className="btn bg-[#BB272E] text-white hover:bg-[#BB272E]">Register</button>
                                 <h1 className="text-right py-2">Already have an account? please <Link to='/login'><button className="btn-link">Login</button></Link></h1>
 
                             </div>

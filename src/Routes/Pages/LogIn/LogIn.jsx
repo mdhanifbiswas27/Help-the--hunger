@@ -1,14 +1,21 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from 'react-icons/fc';
 import { useContext } from "react";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 
 
 const LogIn = () => {
     const { loginUserWithGoogle, LogInWithEmailAndPassword } = useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from?.pathname || "/";
+
+
+
     const handleLogin = event => {
         event.preventDefault();
         const form = event.target;
@@ -17,28 +24,29 @@ const LogIn = () => {
         console.log(email, password);
 
         // login a user
-        LogInWithEmailAndPassword(email,password)
-        .then(()=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "User LogIn successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/');
-        })
-        .catch(()=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "error",
-                title: "Something wrong try again",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              
-        })
-                  
+        LogInWithEmailAndPassword(email, password)
+            .then(() => {
+                
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "User LogIn successfully",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate(from, { replace: true });
+            })
+            .catch(() => {
+                Swal.fire({
+                    position: "top-end",
+                    icon: "error",
+                    title: "Something wrong try again",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+
+            })
+
     }
 
     const handleLoginWithGoogle = () => {
@@ -51,6 +59,7 @@ const LogIn = () => {
                     showConfirmButton: false,
                     timer: 1500
                 });
+                navigate(from, { replace: true });
             })
             .catch(() => {
                 Swal.fire({
@@ -64,7 +73,10 @@ const LogIn = () => {
     }
 
     return (
-        <div>
+        <div >
+            <Helmet>
+                <title>Help The Hunger/LogIn</title>
+            </Helmet>
             <div className="hero py-10 bg-base-200">
                 <div className="hero-content ">
 
@@ -74,19 +86,19 @@ const LogIn = () => {
                                 <label className="label">
                                     <span className="label-text">Email</span>
                                 </label>
-                                <input type="email" name="email" placeholder="email" className="input input-bordered" required />
+                                <input type="email" name="email" placeholder="email" className="input input-bordered border-[#BB272E]" required />
                             </div>
                             <div className="form-control">
                                 <label className="label">
                                     <span className="label-text">Password</span>
                                 </label>
-                                <input type="password" name="password" placeholder="password" className="input input-bordered" required />
+                                <input type="password" name="password" placeholder="password" className="input input-bordered border-[#BB272E]" required />
                                 <label className="label">
                                     <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control mt-6">
-                                <button className="btn btn-primary">Login</button>
+                                <button className="btn bg-[#BB272E] text-white hover:bg-[#BB272E]">Login</button>
                                 <h1 className="text-right py-2">New here? please <Link to='/register'><button className="btn-link">register</button></Link></h1>
 
                             </div>
