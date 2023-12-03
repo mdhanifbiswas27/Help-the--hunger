@@ -1,9 +1,16 @@
 import { useLoaderData } from "react-router-dom";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 
 const Details = () => {
+    const axiosPublic = UseAxiosPublic();
     const LoadedFood = useLoaderData();
-    const { FoodName, photo, quantity, location, time, comment, donatorName, donatorEmail, donatorPhoto } = LoadedFood;
+    const { FoodName, photo, quantity, location, time, comment, donatorName, donatorEmail, donatorPhoto,_id } = LoadedFood;
+   
+    const handleRequest =(photo,FoodName,time,quantity)=>{
+         axiosPublic.post('/requestedFood')
+    }
+   
     return (
         <div className="max-w-screen-xl mx-auto mt-7">
             <div >
@@ -79,7 +86,7 @@ const Details = () => {
 
                         </div>
                     </div>
-                    <div className="flex justify-center mt-5"><button  className="btn hover:bg-[#BB272E] bg-[#BB272E] text-white">Request</button></div>
+                    <div className="flex justify-center mt-5"><button onClick={()=>handleRequest(photo,FoodName,time,quantity)}  className="btn hover:bg-[#BB272E] bg-[#BB272E] text-white">Request</button></div>
                 </div>
             </div>
         </div>
