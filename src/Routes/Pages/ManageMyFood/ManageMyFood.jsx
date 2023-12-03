@@ -13,7 +13,7 @@ const ManageMyFood = () => {
     const navigate = useNavigate();
 
     useEffect(() => {
-        fetch('http://localhost:5000/food')
+        fetch('https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/food')
             .then(res => res.json())
             .then(data => {
                 const usersFood = data.filter(item => item.donatorEmail === userEmail);
@@ -33,7 +33,7 @@ const ManageMyFood = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/food/${id}`, {
+                fetch(`https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/food/${id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json()

@@ -20,7 +20,7 @@ const {user} = useContext(AuthContext)
            const newFood= {FoodName,photo,quantity,location,time,comment,donatorName,donatorEmail,donatorPhoto}
 
         //    add food to server
-        fetch('http://localhost:5000/food', {
+        fetch('https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/food', {
             method: "POST",
             headers: {
                 'content-type': 'application/json'
