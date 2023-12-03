@@ -14,7 +14,8 @@ const Features = () => {
                 const response = await axiosPublic.get("/food");
                 // const sortedFood = response.data.sort((a, b) => new Date(a.time) - new Date(b.time));
                 const sortedFood = response.data.sort((a, b) =>  b.quantity - a.quantity);
-                setFeaturesFood(sortedFood);
+                const sixFood = sortedFood.slice(0, 6);
+                setFeaturesFood(sixFood);
             } catch (error) {
                 console.error("Error fetching data:", error);
             }

@@ -27,7 +27,7 @@ const FoodCard = ({ food }) => {
                        </div>
                        <p>E-mail:{donatorEmail}</p>
                     <div className="card-actions justify-end">
-                        <Link to={`/details/${_id}`}><button className="btn btn-primary">View Details</button></Link>
+                        <Link to={`/details/${_id}`}><button className="text-white mt-2 outline-none bg-[#BB272E] hover:bg-[#BB272E] btn btn-primary">View Details</button></Link>
                     </div>
                 </div>
             </div>
