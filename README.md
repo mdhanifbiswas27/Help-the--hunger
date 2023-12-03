@@ -1,8 +1,9 @@
-# React + Vite
+Live site:  https://my-assigment-eleven.web.app
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Five bullets point:
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1) Poor people can collect food without cost
+2) A rich person can share share his/her extra food
+3) No need to go a person for donate or collect food.
+4) A social service website. we working for hunger for poor society.
+5) Extra food are going to hunger as a result now no food waste.
