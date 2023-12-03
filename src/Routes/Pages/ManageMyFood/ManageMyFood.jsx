@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 
 const ManageMyFood = () => {
@@ -10,6 +10,7 @@ const ManageMyFood = () => {
     const { user } = useContext(AuthContext);
     const userEmail = user?.email;
     console.log(userEmail);
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetch('http://localhost:5000/food')
@@ -32,12 +33,6 @@ const ManageMyFood = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                  Swal.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                  )
-
                 fetch(`http://localhost:5000/food/${id}`, {
                     method: 'DELETE'
                 })
@@ -48,11 +43,12 @@ const ManageMyFood = () => {
 
                             Swal.fire(
                                 'Deleted!',
-                                'Your product has been deleted.',
+                                'Your food has been deleted.',
                                 'success',
                             )
                            
                         }
+                        navigate("/ManageMyFoods")
 
                     })
 
