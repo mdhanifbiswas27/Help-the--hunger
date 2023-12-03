@@ -1,14 +1,39 @@
 import { useLoaderData } from "react-router-dom";
 import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../../Provider/AuthProvider";
+import Swal from "sweetalert2";
+
 
 
 const Details = () => {
     const axiosPublic = UseAxiosPublic();
     const LoadedFood = useLoaderData();
     const { FoodName, photo, quantity, location, time, comment, donatorName, donatorEmail, donatorPhoto,_id } = LoadedFood;
-   
+   const {user} = useContext(AuthContext)
+   const userEmail = user.email;
+
+
     const handleRequest =(photo,FoodName,time,quantity)=>{
-         axiosPublic.post('/requestedFood')
+        const requestFood = {
+             photo:photo,
+             requsterEmail:userEmail,
+             FoodName: FoodName,
+             time:time,
+             quantity:quantity
+        }
+
+         axiosPublic.post('/requestedFood',requestFood)
+         .then(res=>{
+            if(res.data.insertedId){
+                Swal.fire({
+                    title: 'success',
+                    text: 'Food request successfully!',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                })
+            }
+         })
     }
    
     return (

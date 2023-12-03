@@ -32,7 +32,7 @@ const {user} = useContext(AuthContext)
             if (data.insertedId) {
                 Swal.fire({
                     title: 'success',
-                    text: 'Product added successfully!',
+                    text: 'Food added successfully!',
                     icon: 'success',
                     confirmButtonText: 'OK'
                 })
