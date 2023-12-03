@@ -1,17 +1,36 @@
 import { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import FoodCard from "./FoodCard";
+import UseAxiosPublic from "../../../Hooks/UseAxiosPublic";
 
 
 const AvailableFood = () => {
     const [food, setFood] = useState([0]);
-    console.log(food);
+    const axiosPublic = UseAxiosPublic();
 
-    useEffect (()=>{
-        fetch('http://localhost:5000/food/')
-        .then(res=>res.json())
-        .then(data=> setFood(data))
-    },[])
+
+    // useEffect (()=>{
+    //     fetch('http://localhost:5000/food/')
+    //     .then(res=>res.json())
+    //     .then(data=> setFood(data))
+    // },[]);
+
+
+    useEffect(() => {
+        const fetchData = async () => {
+          try {
+            const response = await axiosPublic.get("/food"); 
+            const sortedFood = response.data.sort((a, b) => new Date(a.time) - new Date(b.time));
+            setFood(sortedFood);
+          } catch (error) {
+            console.error("Error fetching data:", error);
+          }
+        };
+    
+        fetchData(); 
+    
+      }, [axiosPublic]);
+    
     return (
         <div className="max-w-screen-xl mx-auto my-10">
             <Helmet>

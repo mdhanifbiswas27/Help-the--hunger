@@ -94,7 +94,7 @@ const Update = () => {
                             </div>
                         </div>
                         <div className="form-control mt-6">
-                            <button className="text-white btn btn-primary bg-[#BB272E] hover:bg-[#BB272E]">Add Food</button>
+                            <button className="text-white btn btn-primary bg-[#BB272E] hover:bg-[#BB272E]">Update Food</button>
                         </div>
                     </form>
 

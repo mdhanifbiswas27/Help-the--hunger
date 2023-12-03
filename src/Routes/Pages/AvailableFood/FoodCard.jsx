@@ -10,7 +10,7 @@ const FoodCard = ({ food }) => {
                 <div className="card-body">
                     <div className=" ">
                         <h2 className="card-title">{FoodName}</h2>
-                        <p>Expire within{time}</p>
+                        <p>Expire within:{time} days</p>
                     </div>
                     <div className="flex items-center justify-between">
                         <p>Quantity:{quantity}</p>
