@@ -9,7 +9,7 @@ const DonnerScore = () => {
     const [topDonner, setTopDonner] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/users')
+        fetch('https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/users')
             .then(res => res.json())
             .then(data => {
 

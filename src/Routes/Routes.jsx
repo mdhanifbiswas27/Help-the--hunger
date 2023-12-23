@@ -51,12 +51,12 @@ const router = createBrowserRouter([
         {
           path:'/Update/:_id',
           element:<Update></Update>,
-          loader:({params})=> fetch(`http://localhost:5000/food/${params._id}`),
+          loader:({params})=> fetch(`https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/food/${params._id}`),
         },
         {
           path:'/details/:_id',
           element:<PrivateRoutes><Details></Details></PrivateRoutes>,
-          loader:({params})=> fetch(`http://localhost:5000/food/${params._id}`),
+          loader:({params})=> fetch(`https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/food/${params._id}`),
         },
         {
           path:'/DonnerScore',

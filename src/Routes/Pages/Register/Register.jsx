@@ -8,7 +8,7 @@ import axios from "axios";
 
 
 const axiosPublic = axios.create({
-  baseURL: 'http://localhost:5000/'
+  baseURL: 'https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/'
 });
 
 

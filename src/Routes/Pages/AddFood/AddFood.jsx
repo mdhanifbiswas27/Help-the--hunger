@@ -20,7 +20,7 @@
 //            const newFood= {FoodName,photo,quantity,location,time,comment,donatorName,donatorEmail,donatorPhoto}
 
 //         //    add food to server
-//         fetch('http://localhost:5000/food', {
+//         fetch('https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/food', {
 //             method: "POST",
 //             headers: {
 //                 'content-type': 'application/json'
@@ -144,7 +144,7 @@ const AddFood = () => {
             };
 
             // add food to server
-            const response = await fetch("http://localhost:5000/food", {
+            const response = await fetch("https://my-assignment-eleven-server-site-q0osxmnty.vercel.app/food", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
