@@ -47,7 +47,8 @@ const Navbar = () => {
                     <Link to='/AvailableFoods'><li>Available Foods</li></Link>
                     <Link to='/AddFood'><li>Add Food</li></Link>
                     <Link to='/ManageMyFoods'><li>Manage My Foods</li></Link>
-                    <Link to='/MyFoodRequest'><li>My Food Request</li></Link>
+                    {/* <Link to='/MyFoodRequest'><li>My Food Request</li></Link> */}
+                    <Link to='/DonnerScore'><li>Donner score</li></Link>
                     {
                         user?<><Link to='/'><li onClick={handleLogOut} className='bg-[#BB272E] text-white py-2 px-4  rounded-full'>LogOut</li></Link></>:<><Link to='/Login'><li className='bg-[#BB272E] text-white py-2 px-4  rounded-full'>Login</li></Link></>
                     }

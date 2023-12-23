@@ -22,7 +22,7 @@ const Update = () => {
         const updateFood= {FoodName,photo,quantity,location,time,comment}
 
      //    add food to server
-     fetch(`https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/food/${_id}`, {
+     fetch(`http://localhost:5000/food/${_id}`, {
          method: "PUT",
          headers: {
              'content-type': 'application/json'

@@ -1,12 +1,12 @@
+// UseAxiosPublic.js
 import axios from "axios";
 
-
 const axiosPublic = axios.create({
-    baseURL:'https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/'
-})
+  baseURL: 'http://localhost:5000/'
+});
 
 const UseAxiosPublic = () => {
-    return  axiosPublic;
+  return axiosPublic;
 };
 
 export default UseAxiosPublic;

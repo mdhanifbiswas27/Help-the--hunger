@@ -10,7 +10,7 @@ const AvailableFood = () => {
 
 
     // useEffect (()=>{
-    //     fetch('https://my-assignment-eleven-server-site-1rgkx3ejw.vercel.app/food/')
+    //     fetch('http://localhost:5000/food/')
     //     .then(res=>res.json())
     //     .then(data=> setFood(data))
     // },[]);

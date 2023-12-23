@@ -1,14 +1,21 @@
 import { useContext } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
-import  { AuthContext } from "../../../Provider/AuthProvider";
+import { AuthContext } from "../../../Provider/AuthProvider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import axios from "axios";
+
+
+const axiosPublic = axios.create({
+  baseURL: 'http://localhost:5000/'
+});
 
 
 const Register = () => {
-    const {createUser,loginUserWithGoogle,UpdateProfile} = useContext(AuthContext);
+    const { createUser, loginUserWithGoogle, UpdateProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    
 
     const handleRegister = event => {
         event.preventDefault();
@@ -17,58 +24,78 @@ const Register = () => {
         const email = form.email.value;
         const Photo = form.Photo.value;
         const password = form.password.value;
-        console.log(name,email,Photo, password);
+        const donatePoint = 0;
+        const newUser = { name, email, Photo, donatePoint };
+
+        // store user information in database
+
+
+        
+
+        axiosPublic.post('users',newUser)
+            .then(res=>{
+                if(res.data.insertedId){
+                    Swal.fire({
+                        title: 'success',
+                        text: 'user created successfully!',
+                        icon: 'success',
+                        confirmButtonText: 'OK'
+                    })
+                }
+            })
+
 
         // create user
-        createUser(email,password)
-        .then(()=>{
-            UpdateProfile(name,Photo)
-            .then(()=>{
+        createUser(email, password)
+            .then(() => {
+                UpdateProfile(name, Photo)
+                    .then(() => {
+
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "User created successfully",
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate('/');
+                    });
+
+
+            })
+            .catch(() => {
                 Swal.fire({
                     position: "top-end",
                     icon: "success",
-                    title: "User created successfully",
+                    title: "something wrong try again",
                     showConfirmButton: false,
                     timer: 1500
-                  });
-                  navigate('/');
-            });
-            
-            
-        })
-        .catch(()=>{
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "something wrong try again",
-                showConfirmButton: false,
-                timer: 1500
-              });
-        })
+                });
+            })
     };
 
-    const handleLoginWithGoogle = ()=>{
+    const handleLoginWithGoogle = () => {
         loginUserWithGoogle()
-        .then(()=>{
+            .then(() => {
                 Swal.fire({
                     position: "middle",
                     icon: "success",
                     title: "User Login successfully",
                     showConfirmButton: false,
                     timer: 1500
-                  });
-                  navigate('/');
-        })
-        .catch(()=>{
-            Swal.fire({
-                position: "middle",
-                icon: "error",
-                title: "Something wrong try again",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/');
-        })
+                });
+                navigate('/');
+            })
+            .catch(() => {
+                Swal.fire({
+                    position: "middle",
+                    icon: "error",
+                    title: "Something wrong try again",
+                    showConfirmButton: false,
+                    timer: 1500
+                });
+                navigate('/');
+            })
     }
 
     return (
@@ -107,7 +134,7 @@ const Register = () => {
                                         <span className="label-text">Password</span>
                                     </label>
                                     <input type="password" name="password" placeholder="password" className="input input-bordered w-[300px] border-[#BB272E]" required />
-                                    
+
                                 </div>
                             </div>
                             <div className="form-control mt-6">
